@@ -13,13 +13,13 @@ const client = new line.messagingApi.MessagingApiClient({
 const app = express();
 
 app.post('/webhook', line.middleware(config), async (req, res) => {
-  res.json({ status: 'ok' });
   const events = req.body.events;
-  for (const event of events) {
+  await Promise.all(events.map(event => {
     if (event.type === 'message') {
-      await handleMessage(event);
+      return handleMessage(event);
     }
-  }
+  }));
+  res.json({ status: 'ok' });
 });
 
 async function handleMessage(event) {
