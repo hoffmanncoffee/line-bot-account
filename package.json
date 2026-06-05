@@ -1,5 +1,5 @@
 {
-  "name": "line-bot",
+  "name": "line-bot-account",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
